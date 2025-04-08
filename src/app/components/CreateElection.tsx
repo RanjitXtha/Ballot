@@ -9,6 +9,8 @@ interface Candidate {
 export default function CreateElection() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [startTime, setStartTime] = useState("")
+  const [endTime, setEndTime] = useState("")
   const [candidates, setCandidates] = useState<Candidate[]>([{ name: "", image: null }]);
 
   const addCandidate = () => {
@@ -35,6 +37,11 @@ export default function CreateElection() {
         formData.append(`candidateImage-${index}`, candidate.image);
       }
     });
+
+    console.log(startTime+endTime);
+
+    formData.append("startTime", new Date(startTime).toISOString()); //just new Date will create error. it expects blob , string or file
+    formData.append("endTime", new Date(endTime).toISOString());
     
     const response = await fetch('/api/admin/create',{
       method:'POST',
@@ -61,6 +68,20 @@ export default function CreateElection() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className="w-full p-2 border rounded mb-3"
+        />
+
+        <input
+          type="datetime-local"
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
+          required
+        />
+
+        <input
+          type="datetime-local"
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
+          required
         />
         
         <h3 className="text-lg font-semibold mb-2">Candidates</h3>

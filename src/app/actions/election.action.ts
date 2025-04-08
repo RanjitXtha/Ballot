@@ -87,8 +87,20 @@ const DeleteElection = async(electionId:string)=>{
         };
 
 
-const Vote = async(userId:string,candidateId:string,electionId:string)=>{
+const Vote = async(userId:string,candidateId:string,electionId:string,startTime:Date,endTime:Date)=>{
     try{
+        const currentDate = new Date();
+        console.log("Dates:"+ currentDate +' '+startTime+' '+ endTime);
+        if(currentDate<startTime){
+            console.log("Not started Yet")
+            return
+        }
+    
+        if(currentDate> endTime){
+            console.log("cannot vote. already ended");
+            return
+        }
+        
     const existingVote = await prisma.vote.findFirst({
         where:{
             userId,candidateId
@@ -105,7 +117,7 @@ const Vote = async(userId:string,candidateId:string,electionId:string)=>{
         const voteCount= await GetVotes(candidateId);
         return voteCount;
     }
-
+  
     const vote = await prisma.vote.create({
         data:{
             userId,candidateId,electionId

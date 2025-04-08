@@ -12,10 +12,14 @@ const ElectionList = async() => {
         <div>
             {
                 electionList.map((election,index)=>(
+                   
                     <Link href={`/election/${election.id}`} key={index}>
-                        <h3>{election.title}</h3>
-                        <p>{election.description}</p>
+                        <div  className='my-4 ring-2 p-1'>
+                            <h3>Title:{election.title}</h3>
+                            <p>Description{election.description}</p>
+                        </div>
                     </Link>
+                  
                 ))
             }
         </div>

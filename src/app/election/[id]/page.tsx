@@ -25,10 +25,12 @@ const page = async({params}:{params:{id:string}}) => {
         <div>
             <p>{election.title}</p>
             <p>{election.description}</p>
+            <p>Start Time:{election.startTime.toLocaleString()}</p>
+            <p>End Time:{election.endTime.toLocaleString()}</p>
             <div>
                 {
                     candidates.map((candidate)=>(
-                        <Candidates key={candidate.id} candidate={candidate} userId={userId} electionId= {election.id} />
+                        <Candidates key={candidate.id} startTime={election.startTime} endTime={election.endTime} candidate={candidate} userId={userId} electionId= {election.id} />
                         // <div key={candidate.id}>
                         //     <p>{candidate.name}</p>
                         //     {

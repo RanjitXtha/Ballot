@@ -16,6 +16,8 @@ export const POST = async(req:NextRequest)=>{
     
     const title = formData.get("title") as string;
     const description = formData.get("description") as string;
+    const startTime = formData.get("startTime") as string;
+    const endTime = formData.get("endTime") as string;
 
     const candidates = [];
     let index = 0;
@@ -42,11 +44,11 @@ export const POST = async(req:NextRequest)=>{
       }
   
       try{
-
-     
+        console.log("time")
+     console.log(startTime+endTime);
       const election = await prisma.election.create({
         data:{
-            title,description
+            title,description,startTime,endTime
         }
       })
 

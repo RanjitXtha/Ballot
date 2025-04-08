@@ -12,7 +12,7 @@ type CandidateType={
     }
 }
 
-const Candidates = ({candidate,userId,electionId}:{candidate:CandidateType,userId:string,electionId:string}) => {
+const Candidates = ({candidate,startTime,endTime,userId,electionId}:{startTime:Date,endTime:Date,candidate:CandidateType,userId:string,electionId:string}) => {
     
     const candidateId  = candidate.id;
     const [votes, setVotes] = useState(candidate._count.vote!);
@@ -32,7 +32,7 @@ const Candidates = ({candidate,userId,electionId}:{candidate:CandidateType,userI
     const handleVote=async(e:React.FormEvent)=>{
         e.preventDefault();
         try{
-            const vote = await Vote(userId,candidateId,electionId)
+            const vote = await Vote(userId,candidateId,electionId,startTime,endTime)
             console.log(vote);
             if(typeof(vote)==='number'){
                 setVotes(vote);

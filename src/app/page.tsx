@@ -14,7 +14,6 @@ export default function Home() {
       <h1>Election</h1>
       <CreateElection />
       <ElectionList />
-      
     </div>
   );
 }

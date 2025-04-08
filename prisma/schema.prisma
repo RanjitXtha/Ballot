@@ -13,6 +13,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Gender{
+  MALE 
+  FEMALE
+}
+
 model User{
   id      String    @id @default(cuid())
   name String 
@@ -23,7 +28,7 @@ model User{
   address String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
+  gender Gender
   votes Vote[]
 }
 
@@ -32,7 +37,8 @@ model Election{
   title String 
   description String
   createdAt DateTime @default(now())
-
+  startTime   DateTime
+  endTime     DateTime
   candidates Candidate[]
   votes Vote[]
 }
