@@ -1,7 +1,7 @@
 import { GetCandidate, GetElection } from '@/app/actions/election.action'
 import { getUserId } from '@/app/actions/user.action';
 import Candidates from '@/app/components/Candidates';
-import { Election } from '@/app/components/Election';
+import { DeleteButton } from '@/app/components/DeleteButton';
 import React from 'react'
 
 const page = async({params}:{params:{id:string}}) => {
@@ -45,7 +45,7 @@ const page = async({params}:{params:{id:string}}) => {
                 }
                 
             </div>
-            <Election electionId={election.id} />
+            <DeleteButton electionId={election.id} />
         </div>
     </div>
   )

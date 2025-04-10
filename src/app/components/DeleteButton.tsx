@@ -1,14 +1,15 @@
 "use client"
 import React, { useState } from 'react'
 import { DeleteElection } from '../actions/election.action'
-import Candidates from './Candidates';
+import { useRouter } from 'next/navigation'
 
 interface Candidate {
   name: string;
   age: number;
 }
 
-export const Election = ({electionId}:{electionId:string}) => {
+export const DeleteButton = ({electionId}:{electionId:string}) => {
+  const router = useRouter();
   const [candidates , setCandidates] = useState<Candidate[]>([{name:"",age:0}]);
 
   const addCandidate=()=>{
@@ -24,7 +25,8 @@ export const Election = ({electionId}:{electionId:string}) => {
         }
         const deleteElection =await DeleteElection(electionid);
         if(deleteElection){
-            console.log("deleted sucessfully")
+            console.log("deleted sucessfully");
+            router.push("/")
         }
     }
   return (
