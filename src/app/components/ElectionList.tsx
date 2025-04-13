@@ -19,7 +19,7 @@ const ElectionList = async() => {
                             <p>{election.description}</p>
                             <div className='flex justify-between items-center'>
                                 <p>Date-Date</p>
-                                <button className='rounded-md bg-[#266ef3] py-1.5 px-3 text-sm text-white'>Vote Now</button>
+                                <button className='button'>Vote Now</button>
                             </div>
                         </div>
                     </Link>

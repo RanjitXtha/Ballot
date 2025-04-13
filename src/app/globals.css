@@ -8,4 +8,8 @@
     .election-list{
         @apply my-4 border-1 p-4 border-gray-300 rounded-lg
     }
+
+    .button{
+        @apply rounded-md bg-[#266ef3] py-1.5 px-3 text-sm text-white
+    }
 }
