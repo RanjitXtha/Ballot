@@ -44,22 +44,24 @@ const Candidates = ({candidate,startTime,endTime,userId,electionId}:{startTime:D
     }
 
   return (
-    <div>
-        <p>{candidate.id}</p>
-        <p>{candidate.name}</p>
+    <div className="p-[1rem] shadow-md outline-2 bg-[#f7f8fa] outline-gray-300 rounded-md">
+      
         {
         candidate.image?
-        <img width="200" src={candidate.image} />:null
+        <img className='w-[18rem] h-[18rem]' src={candidate.image} />:null
         }
-        <p>Votes:{votes}</p>
-        <div>
-            <button className={`${hasVoted?'bg-green-500':'bg-cyan-400'}`} onClick={handleVote}>
-                {
-                    hasVoted?
-                    <p>voted</p>
-                    :<p>Vote</p>
-                }
-            </button>
+        <div className='flex flex-col items-center'>
+            <p className='text-lg font-semibold'>{candidate.name}</p>
+            <p className='text-sm'>Votes:{votes}</p>
+            <div className='grid w-full'>
+                <button className={`${hasVoted?'bg-green-500':''} button my-[0.5rem]`} onClick={handleVote}>
+                    {
+                        hasVoted?
+                        <p>Voted</p>
+                        :<p>Vote</p>
+                    }
+                </button>
+            </div>
         </div>
                             
     </div>

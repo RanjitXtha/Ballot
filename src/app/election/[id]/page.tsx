@@ -20,27 +20,22 @@ const page = async({params}:{params:{id:string}}) => {
 
     console.log(election);
   return (
-    <div>
-        <h1>Election Page</h1>
-        <div>
-            <p>{election.title}</p>
-            <p>{election.description}</p>
-            <p>Start Time:{election.startTime.toLocaleString()}</p>
-            <p>End Time:{election.endTime.toLocaleString()}</p>
-            <div>
+    <div className='px-[3rem] bg-[#f7f8fa]  py-[1rem] '>
+        <div className='rounded-md flex flex-col gap-2 items-center bg-white shadow-md py-[1rem] px-[3rem] '>
+            <p  className='font-bold text-4xl mb-2'>{election.title}</p>
+            <p className='mb-[1rem]'>{election.description}</p>
+            <div className='rounded-md bg-[#f1f5f9] w-full py-[1rem] px-[1rem] flex flex-col items-center'>
+                <p>Click the vote button to vote your preferred candidate. </p>
+                <p>Each Voter can only vote once and within the active period of the election.</p>
+                <p className='button  my-[1rem] min-w-[20rem] text-center'>Start Time: {election.startTime.toLocaleString()}</p>
+                <p className='button min-w-[20rem] text-center'>End Time: {election.endTime.toLocaleString()}</p>
+            </div>
+           
+           <h1 className='title my-[1rem]'>Candidates:</h1>
+            <div className='flex justify-center items-center gap-6'>
                 {
                     candidates.map((candidate)=>(
                         <Candidates key={candidate.id} startTime={election.startTime} endTime={election.endTime} candidate={candidate} userId={userId} electionId= {election.id} />
-                        // <div key={candidate.id}>
-                        //     <p>{candidate.name}</p>
-                        //     {
-                        //         candidate.image?
-                        //         <img width="200" src={candidate.image} />:null
-                        //     }
-                        //     <p>Votes:{candidate._count.vote}</p>
-                        //     <VoteButton userId={userId} candidateId={candidate.id} electionId = {election.id} />
-                            
-                        // </div>
                     ))
                 }
                 

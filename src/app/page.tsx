@@ -2,7 +2,6 @@ import { title } from "process";
 import { getUser } from "./actions/user.action";
 import CreateElection from "./components/CreateElection";
 import ElectionList from "./components/ElectionList";
-import Logout from "./components/Logout";
 
 export default function Home() {
   getUser();
@@ -17,18 +16,7 @@ export default function Home() {
   return (
     <div className="bg-[#f7f8fa]">
 
-      <header className="px-[3rem] shadow-sm  bg-white flex justify-between items-center py-3 mb-[1rem]">
-        <div className="font-bold text-xl">eBallot</div>
-        <div className="flex items-center gap-6 font-semibold ">
-          <nav>Home</nav>
-          <nav>My Ballots</nav>
-          <nav>Elections</nav>
-          <nav>About</nav>
-          <Logout />
-        </div>
-      </header>
-
-      <section className="mt-[2rem] px-[3rem] grid grid-cols-[1fr_2.5fr_1.4fr] items-start gap-[2rem]">
+      <section className="py-[1rem] px-[3rem] grid grid-cols-[1fr_2.5fr_1.4fr] items-start gap-[2rem]">
   
           <div className="w-full bg-white shadow-md p-4 ">
             <div className="flex flex-col gap-2 items-center">
@@ -44,7 +32,7 @@ export default function Home() {
             </div>    
           </div>
 
-        <div className="bg-white px-[2rem] py-[1rem] shadow-md  ">
+        <div className="bg-white h-full px-[2rem] py-[1rem] shadow-md  ">
           <ElectionList />
         </div>
 

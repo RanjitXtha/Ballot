@@ -31,7 +31,7 @@ export const DeleteButton = ({electionId}:{electionId:string}) => {
     }
   return (
     <div>
-      <button onClick={handleDelete}>X</button>
+      <button className='button' onClick={handleDelete}>Delete</button>
       {/* <div>
         {
           candidates.map((candidate,index)=>(
