@@ -30,7 +30,7 @@ const getUser = async()=>{
             id:userId
         },
         select:{
-            id:true,name:true,email:true,address:true,phone:true,
+            id:true,name:true,email:true,address:true,phone:true,gender:true
         }
     })
 

@@ -2,10 +2,13 @@ import { title } from "process";
 import { getUser } from "./actions/user.action";
 import CreateElection from "./components/CreateElection";
 import ElectionList from "./components/ElectionList";
+import UserProfile from "./components/UserProfile";
 
-export default function Home() {
-  getUser();
+export default async function Home() {
+  const user = await getUser();
 
+  if(!user)return;
+console.log(user)
   const elections = [
     {title:"Election 1",startDate:'3'},
     {title:"Election 2",startDate:'4'},
@@ -18,19 +21,7 @@ export default function Home() {
 
       <section className="py-[1rem] px-[3rem] grid grid-cols-[1fr_2.5fr_1.4fr] items-start gap-[2rem]">
   
-          <div className="w-full bg-white shadow-md p-4 ">
-            <div className="flex flex-col gap-2 items-center">
-              <div className="w-[5rem] h-[5rem] rounded-full bg-black"></div>
-              <p className="font-semibold">Name</p>
-              <p className="text-sm">Email</p>
-            </div>
-
-            <div className="mt-[1rem] border-t-1 pt-3 border-gray-600 flex flex-col items-start">
-              <p>Email</p>
-              <p>Gender</p>
-              <p>Location</p>
-            </div>    
-          </div>
+        <UserProfile user = {user} />
 
         <div className="bg-white h-full px-[2rem] py-[1rem] shadow-md  ">
           <ElectionList />
