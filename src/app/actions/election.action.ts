@@ -84,7 +84,7 @@ const DeleteElection = async(electionId:string)=>{
             } catch (err) {
                 console.error("Error checking vote:", err);
             }
-        };
+    };
 
 
 const Vote = async(userId:string,candidateId:string,electionId:string,startTime:Date,endTime:Date)=>{

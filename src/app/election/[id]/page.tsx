@@ -17,16 +17,39 @@ const page = async({params}:{params:{id:string}}) => {
         return <h1>This election doesnt exist.</h1>
     }
     const candidates = await GetCandidate(id);
+    console.log(candidates)
 
     console.log(election);
+    const endTime = new Date(election.endTime);
+    const now = new Date();
+
+    const maxVotes = Math.max(...candidates.map(c => c._count.vote));
+    const winners = candidates.filter(c => c._count.vote === maxVotes);
+    
   return (
     <div className='px-[3rem] bg-[#f7f8fa]  py-[1rem] '>
         <div className='rounded-md flex flex-col gap-2 items-center bg-white shadow-md py-[1rem] px-[3rem] '>
             <p  className='font-bold text-4xl mb-2'>{election.title}</p>
             <p className='mb-[1rem]'>{election.description}</p>
             <div className='rounded-md bg-[#f1f5f9] w-full py-[1rem] px-[1rem] flex flex-col items-center'>
-                <p>Click the vote button to vote your preferred candidate. </p>
-                <p>Each Voter can only vote once and within the active period of the election.</p>
+                {
+                    now > endTime ?
+                    <div className='text-center'>
+                        <p>Ended</p>
+                        {
+                            winners.length === 1?<p>Winner {winners[0].name}</p>:
+                            <p>It's a tie between: {winners.map(w => w.name).join(" and ")}</p>
+                        }
+                       
+                    </div>:
+                    <div className='text-center'>
+                        <p>Click the vote button to vote your preferred candidate. </p>
+                        <p>Each Voter can only vote once and within the active period of the election.</p>
+                    </div>
+                   
+                }
+                                        
+             
                 <p className='button  my-[1rem] min-w-[20rem] text-center'>Start Time: {election.startTime.toLocaleString()}</p>
                 <p className='button min-w-[20rem] text-center'>End Time: {election.endTime.toLocaleString()}</p>
             </div>
