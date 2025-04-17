@@ -1,6 +1,7 @@
 "use server"
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { totalmem } from "os";
 
 const GetElectionList = async()=>{
     const electionList = await prisma.election.findMany();
@@ -134,5 +135,34 @@ const Vote = async(userId:string,candidateId:string,electionId:string,startTime:
    
 }
 
+const GetInfo = async()=>{
+    const totalElection = await prisma.election.count();
+    const totalVoters = await prisma.user.count();
+    const totalMales = await prisma.user.findMany({
+        where:{
+            gender:'MALE'
+        }
+    })
 
-export {GetElectionList ,DeleteElection , GetElection , GetCandidate , checkVote, Vote }
+    const totalFemales = await prisma.user.findMany({
+        where:{
+            gender:'FEMALE'
+        }
+    })
+    const now = new Date();
+
+    const totalActiveElection = await prisma.election.count({
+        where:{
+            startTime:{lte:now},
+            endTime:{gte:now}
+        }
+    })
+
+    const totalCandidates = await prisma.candidate.count();
+    
+    const info = {totalElection , totalVoters , totalMales , totalFemales ,totalCandidates , totalActiveElection}
+    return info;
+}
+
+
+export {GetElectionList ,DeleteElection , GetElection , GetCandidate , checkVote, Vote , GetInfo }

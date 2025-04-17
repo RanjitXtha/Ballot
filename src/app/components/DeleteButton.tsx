@@ -31,30 +31,7 @@ export const DeleteButton = ({electionId}:{electionId:string}) => {
     }
   return (
     <div>
-      <button className='button' onClick={handleDelete}>Delete</button>
-      {/* <div>
-        {
-          candidates.map((candidate,index)=>(
-            <div key={index}>
-              <p>{candidate.name}</p>
-              <p>{candidate.age}</p>
-              <button onClick={addCandidate}>add</button>
-            </div>
-          ))
-        }
-      </div> */}
-
-      {/* <div>
-        {
-          candidates.map((candidate,index)=>(
-            <div>
-              <input type="text" placeholder='name'  />
-              <input type="text" placeholder='age' />
-              <button onClick={addCandidate}>add</button>
-            </div>
-          ))
-        }
-      </div> */}
+      <button className='button bg-red-500' onClick={handleDelete}>Delete</button>
     </div>
   )
 }

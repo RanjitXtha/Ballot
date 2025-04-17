@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface Candidate {
@@ -7,6 +8,7 @@ interface Candidate {
 }
 
 export default function CreateElection() {
+  const router = useRouter();
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [startTime, setStartTime] = useState("")
@@ -48,7 +50,12 @@ export default function CreateElection() {
       body:formData,
     })
 
-    console.log(response);
+    const data = await response.json();
+    console.log(data);
+    if(!response.ok){
+      console.log(data.message);
+    }
+    router.push('/admin/home')
   };
 
   return (
@@ -108,7 +115,7 @@ export default function CreateElection() {
           Add Candidate
         </button>
         
-        <button type="submit" className="bg-green-500 text-white p-2 rounded w-full">
+        <button type="submit" className="button text-white p-2 rounded w-full">
           Create Election
         </button>
       </form>

@@ -22,7 +22,7 @@ const page = async({params}:{params:{id:string}}) => {
     console.log(election);
     const endTime = new Date(election.endTime);
     const now = new Date();
-
+    
     const maxVotes = Math.max(...candidates.map(c => c._count.vote));
     const winners = candidates.filter(c => c._count.vote === maxVotes);
     
@@ -63,7 +63,6 @@ const page = async({params}:{params:{id:string}}) => {
                 }
                 
             </div>
-            <DeleteButton electionId={election.id} />
         </div>
     </div>
   )
